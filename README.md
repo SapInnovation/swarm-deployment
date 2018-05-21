@@ -35,12 +35,13 @@ NOTE: At the moment, deployment to Swarm is manual only. Integration with Concou
 ### Manual deployment
 
 1. Find out the Swarm Masters' IP and ports (from DevOps Team), say `10.2.3.4`.
-2. SSH to the Swarm master and copy your stack yaml on the master in a temporary directory.
-2. Assuming Docker stack YAML is present at `/tmp/myapp-stack.yml` on Swarm master, run following command:
+2. SSH to the Swarm master and copy your stack yaml (and other config files, if any) on the master in a temporary directory.
+2. Assuming Docker stack YAML (and other configuration files) is present at `/tmp/` on Swarm master and stack configuration is in `myapp-stack.yml`, run following command to deploy stack to Swarm:
 
    ```sh
    export STACK_NAME="myapp-stack"
-   docker stack deploy $STACK_NAME -c /tmp/myapp-stack.yml
+   cd /tmp
+   docker stack deploy $STACK_NAME -c myapp-stack.yml
    ```
 
    NOTE: Ensure that you are directly able to connect to Swarm Managers from your machine.
